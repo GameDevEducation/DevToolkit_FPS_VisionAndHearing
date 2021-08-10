@@ -280,6 +280,7 @@ public class CharacterMotor : MonoBehaviour, IPausable
                 if (!wasGrounded)
                 {
                     OnPlayLandAudio?.Invoke();
+                    HearingManager.Instance.OnSoundEmitted(gameObject, transform.position, EHeardSoundCategory.EJump, 2f);
                     TimeUntilNextFootstep = Config.FootstepInterval;
                 }
 
@@ -382,6 +383,7 @@ public class CharacterMotor : MonoBehaviour, IPausable
         if (TimeUntilNextFootstep <= 0)
         {
             OnPlayFootstepAudio?.Invoke();
+            HearingManager.Instance.OnSoundEmitted(gameObject, transform.position, EHeardSoundCategory.EFootstep, IsRunning ? 2f : 1f);
 
             TimeUntilNextFootstep = Config.FootstepInterval;
 
